@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import static java.lang.Math.*;
 
-public final class GuardedInt implements Serializable {
+public final class GuardedInt implements Serializable, Comparable<GuardedInt> {
 
 	private final int value;
 
@@ -72,6 +72,11 @@ public final class GuardedInt implements Serializable {
 	@Override
 	public int hashCode() {
 		return value;
+	}
+
+	@Override
+	public int compareTo(GuardedInt o) {
+		return Integer.compare(value, o.toInt());
 	}
 
 }
