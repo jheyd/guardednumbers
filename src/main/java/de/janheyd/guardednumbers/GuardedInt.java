@@ -40,6 +40,16 @@ public final class GuardedInt implements Serializable {
 		return new GuardedInt(multiplyExact(value, number));
 	}
 
+	public GuardedInt divideBy(GuardedInt number) {
+		return divideBy(number.toInt());
+	}
+
+	public GuardedInt divideBy(int number) {
+		if (value == Integer.MIN_VALUE && number == -1)
+			throw new ArithmeticException("Overflow when dividing Integer.MIN_VALUE (" + Integer.MIN_VALUE + ") by -1");
+		return new GuardedInt(value / number);
+	}
+
 	public GuardedInt negate() {
 		return new GuardedInt(negateExact(value));
 	}
